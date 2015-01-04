@@ -95,7 +95,7 @@ public class Accueil extends ActionBarActivity {
 		imageviewViewPager.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View _view) {
-				Intent intent = new Intent(Accueil.this, XActivity.class);
+				Intent intent = new Intent(Accueil.this, X_ViewPager.class);
 				startActivity(intent);
 			}
 		});		

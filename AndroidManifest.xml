@@ -28,6 +28,11 @@
             android:label="Informations" >
         </activity>
 
+        <activity
+            android:name=".X_ViewPager"
+            android:label="ViewPager" >
+        </activity>
+
         <!-- Classes Service -->
         <service
             android:name="com.example.projetesiea.XService"
