@@ -25,6 +25,7 @@ public class Accueil extends ActionBarActivity {
   	/**
   	 * Lancement de l'activite Accueil
   	 */
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
 	{
@@ -108,6 +109,10 @@ public class Accueil extends ActionBarActivity {
     	// X_ACTIVITY_ECHEC ou RENSEIGNEMENT_ECHEC
     	if(requestCode == RENSEIGNEMENT_ECHEC && resultCode == Activity.RESULT_OK) {
 			Intent intent = new Intent(Accueil.this, XActivity.class);
+			startActivity(intent);
+    	}
+    	if(requestCode == 3 && resultCode == Activity.RESULT_OK) {
+			Intent intent = new Intent(Accueil.this, X_ViewPager.class);
 			startActivity(intent);
     	}
     }

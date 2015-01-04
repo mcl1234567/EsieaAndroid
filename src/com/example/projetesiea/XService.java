@@ -34,7 +34,7 @@ public class XService extends Service {
 	/*private Notification nouvelleNotification; // ???*/
 	//public static final int NOTIFICATION_ID = 1; // ???
 
-  // objet du service
+	// objet du service
 	private AppLookupTask lastLookup = null;
 
 	AlarmManager alarmManager;
@@ -96,29 +96,23 @@ public class XService extends Service {
   						for(int i=0; i<nl.getLength(); i++) {
   							Element entry = (Element) nl.item(i);
 
-  							String nom = 					entry.getElementsByTagName("nom_pays").item(0).getFirstChild().getNodeValue();
-  							String capitale = 				entry.getElementsByTagName("capitale").item(0).getFirstChild().getNodeValue();
-  							String monnaie = 				entry.getElementsByTagName("monnaie").item(0).getFirstChild().getNodeValue();
-  							String population = 			entry.getElementsByTagName("population").item(0).getFirstChild().getNodeValue();
-  							/*String formeEtat = 			entry.getElementsByTagName("formeetat").item(0).getFirstChild().getNodeValue();
-  							String roi =					entry.getElementsByTagName("roi").item(0).getFirstChild().getNodeValue();
-  							String presidentGouv = 			entry.getElementsByTagName("presidentgouvernement").item(0).getFirstChild().getNodeValue(); 
-  							String langue = 				entry.getElementsByTagName("langue").item(0).getFirstChild().getNodeValue();		
-  							String gouvernement = 			entry.getElementsByTagName("gouvernement").item(0).getFirstChild().getNodeValue(); 
-  							String premierMinistre = 		entry.getElementsByTagName("premierministre").item(0).getFirstChild().getNodeValue(); 
-  							String presidentRepublique = 	entry.getElementsByTagName("presidentrepublique").item(0).getFirstChild().getNodeValue(); 
-  							String climat = 				entry.getElementsByTagName("climat").item(0).getFirstChild().getNodeValue(); 
-  							String superficie = 			entry.getElementsByTagName("superficie").item(0).getFirstChild().getNodeValue(); 
-  							String densite = 				entry.getElementsByTagName("densite").item(0).getFirstChild().getNodeValue(); 
-  							String religion = 				entry.getElementsByTagName("religion").item(0).getFirstChild().getNodeValue(); 
-  							String pib = 					entry.getElementsByTagName("pib").item(0).getFirstChild().getNodeValue();  
-  							String nombreExpatries = 		entry.getElementsByTagName("nombreexpatries").item(0).getFirstChild().getNodeValue(); 
-  							String tauxChomage = 			entry.getElementsByTagName("tauxchomage").item(0).getFirstChild().getNodeValue(); 
-  							String indicatifTel = 			entry.getElementsByTagName("indicatiftel").item(0).getFirstChild().getNodeValue();*/  							
+  							String nom = 			 entry.getElementsByTagName("nom_pays").item(0).getFirstChild().getNodeValue();
+  							String capitale = 		 entry.getElementsByTagName("capitale").item(0).getFirstChild().getNodeValue();
+  							String monnaie = 		 entry.getElementsByTagName("monnaie").item(0).getFirstChild().getNodeValue();
+  							String population = 	 entry.getElementsByTagName("population").item(0).getFirstChild().getNodeValue();
+  							String formeEtat = 	 	 entry.getElementsByTagName("formeetat").item(0).getFirstChild().getNodeValue(); 
+  							String langue = 		 entry.getElementsByTagName("langue").item(0).getFirstChild().getNodeValue(); 
+  							String climat = 		 entry.getElementsByTagName("climat").item(0).getFirstChild().getNodeValue(); 
+  							String superficie = 	 entry.getElementsByTagName("superficie").item(0).getFirstChild().getNodeValue(); 
+  							String densite = 		 entry.getElementsByTagName("densite").item(0).getFirstChild().getNodeValue(); 
+  							String religion = 		 entry.getElementsByTagName("religion").item(0).getFirstChild().getNodeValue();
+  							String nombreExpatries = entry.getElementsByTagName("nombreexpatries").item(0).getFirstChild().getNodeValue();
+  							String indicatifTel = 	 entry.getElementsByTagName("indicatiftel").item(0).getFirstChild().getNodeValue();
 
   							//Pays pays = new Pays(nom, monnaie, population, formeEtat, roi, presidentGouv, langue, capitale, gouvernement, premierMinistre, 
   								//	presidentRepublique, climat, superficie, densite, religion, pib, nombreExpatries, tauxChomage, indicatifTel);
-  							Pays pays = new Pays(nom, monnaie, population, "", "", "", "", capitale, "", "", "", "", "", "", "", "", "", "", "");  							
+  							//Pays pays = new Pays(nom, monnaie, population, "", "", "", "", capitale, "", "", "", "", "", "", "", "", "", "", "");  							
+  							Pays pays = new Pays(nom, monnaie, population, formeEtat, langue, capitale, climat, superficie, densite, religion, nombreExpatries, indicatifTel);
 
   							// Traite le nouveau pays ajouté.
   							addToDB(pays);
@@ -139,39 +133,15 @@ public class XService extends Service {
   			return null;
   		}
 
-      /**
-       * ???
-       
-    	@Override
-    	protected void onProgressUpdate(Pays... values) 
-    	{
-    		// Récupération d'une notification.
-    		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-    		Context context = getApplicationContext();
-    		String expandedText = values[0].getNom();
-    		String expandedTitle = "M: taratata";
-
-    		// Démarre une nouvelle activité.
-    		Intent intent = new Intent(XService.this, XActivity.class);
-    		PendingIntent launchIntent = PendingIntent.getActivity(context, 0, intent, 0);
-
-    		// Configuration d'une notification.
-    		nouvelleNotification.setLatestEventInfo(context, expandedTitle, expandedText, launchIntent);
-    		nouvelleNotification.when = java.lang.System.currentTimeMillis();
-
-    		// Envoi d'une notification.
-    		notificationManager.notify(NOTIFICATION_ID, nouvelleNotification);
-
-    		Toast.makeText(context, expandedTitle, Toast.LENGTH_SHORT).show();
-    	}*/
-
+  		/**
+  		 * Etape 4
+  		 */
     	@Override
     	protected void onPostExecute(Void result) 
     	{
     		// Appel des receivers.
-  	  	sendBroadcast(new Intent(INFORMATION_REFRESHED));
-  	  	stopSelf();
+  	  		sendBroadcast(new Intent(INFORMATION_REFRESHED));
+  	  		stopSelf();
     	}
   	}
 
@@ -196,7 +166,7 @@ public class XService extends Service {
     }
 
     /**
-     * Etape 4
+     * Etape 5
      * Insertion / Mise à jour de la base de données.
      * @param _pays
      */
@@ -212,26 +182,18 @@ public class XService extends Service {
 
     		ContentValues values = new ContentValues();
 
-		    values.put(XProvider.KEY_NOM, _pays.getNom());
-		    values.put(XProvider.KEY_CAPITALE, _pays.getCapitale());
-		    values.put(XProvider.KEY_MONNAIE, _pays.getMonnaie());
-		    values.put(XProvider.KEY_POPULATION, _pays.getPopulation());
-		    /*values.put(RenseignementProvider.KEY_FORMEETAT, 				_pays.getFormeEtat());
-		    values.put(RenseignementProvider.KEY_ROI, 						_pays.getRoi());
-		    values.put(RenseignementProvider.KEY_PRESIDENT_GOUVERNEMENT, 	_pays.getPresidentGouvernement());
-		    values.put(RenseignementProvider.KEY_LANGUE, 					_pays.getLangue());
-		    values.put(RenseignementProvider.KEY_GOUVERNEMENT, 				_pays.getGouvernement());
-		    values.put(RenseignementProvider.KEY_PREMIER_MINISTRE,			_pays.getPremierMinistre());
-		    values.put(RenseignementProvider.KEY_PRESIDENT_REPUBLIQUE,		_pays.getPresidentRepublique());
-		    values.put(RenseignementProvider.KEY_PRESIDENT_GOUVERNEMENT,	_pays.getPresidentGouvernement());
-		    values.put(RenseignementProvider.KEY_CLIMAT,					_pays.getClimat());
-		    values.put(RenseignementProvider.KEY_SUPERFICIE,				_pays.getSuperficie());
-		    values.put(RenseignementProvider.KEY_DENSITE,					_pays.getDensite());
-		    values.put(RenseignementProvider.KEY_RELIGION,					_pays.getReligion());
-		    values.put(RenseignementProvider.KEY_PIB,						_pays.getPIB());
-		    values.put(RenseignementProvider.KEY_NOMBRE_EXPATRIES,			_pays.getNombreExpatries());
-		    values.put(RenseignementProvider.KEY_TAUX_CHOMAGE,				_pays.getTauxChomage());
-		    values.put(RenseignementProvider.KEY_INDICATIF_TEL,				_pays.getIndicatifTel());*/
+		    values.put(XProvider.KEY_NOM, 				_pays.getNom());
+		    values.put(XProvider.KEY_CAPITALE, 			_pays.getCapitale());
+		    values.put(XProvider.KEY_MONNAIE, 			_pays.getMonnaie());
+		    values.put(XProvider.KEY_POPULATION, 		_pays.getPopulation());
+		    values.put(XProvider.KEY_FORMEETAT, 		_pays.getFormeEtat());
+		    values.put(XProvider.KEY_LANGUE, 			_pays.getLangue());
+		    values.put(XProvider.KEY_CLIMAT,			_pays.getClimat());
+		    values.put(XProvider.KEY_SUPERFICIE,		_pays.getSuperficie());
+		    values.put(XProvider.KEY_DENSITE,			_pays.getDensite());
+		    values.put(XProvider.KEY_RELIGION,			_pays.getReligion());
+		    values.put(XProvider.KEY_NOMBRE_EXPATRIES,	_pays.getNombreExpatries());
+		    values.put(XProvider.KEY_INDICATIF_TEL,		_pays.getIndicatifTel());
 
     		contentResolver.insert(XProvider.CONTENT_RENSEIGNEMENT_URI, values);
 
@@ -240,13 +202,13 @@ public class XService extends Service {
     }
 
     /**
-     * Etape 5
-     * @param _pays
+     * Etape 6
+     * @param _element
      */
-    private void endProcess(Pays _pays) 
+    private void endProcess(Pays _element) 
     {
     	Intent intent = new Intent(NOUVEAU_RENSEIGNEMENT_INSERE);
-    	intent.putExtra("nom", _pays.getNom());
+    	intent.putExtra("nom", _element.getNom());
 
     	// Envoi le pending intent
     	sendBroadcast(intent);

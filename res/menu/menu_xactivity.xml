@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.actionbar.MainActivity" >
+
+    <item
+        android:id="@+id/action_accueil"
+        android:orderInCategory="100"
+        android:title="@string/item_accueil"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_xviewpager"
+        android:orderInCategory="100"
+        android:title="@string/correspondants"
+        app:showAsAction="never"/>
+
+</menu>

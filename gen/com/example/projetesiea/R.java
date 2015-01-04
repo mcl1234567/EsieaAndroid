@@ -17,12 +17,8 @@ public final class R {
         public static final int abc_slide_out_top=0x7f040005;
     }
     public static final class array {
-        public static final int magnitude=0x7f0c0001;
-        public static final int magnitude_options=0x7f0c0002;
-        public static final int pays=0x7f0c0004;
-        public static final int pays_disponibles=0x7f0c0005;
-        public static final int update_freq_options=0x7f0c0000;
-        public static final int update_freq_values=0x7f0c0003;
+        public static final int pays=0x7f0c0000;
+        public static final int pays_disponibles=0x7f0c0001;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -1704,16 +1700,6 @@ containing a value of this type.
         public static final int dialog_fixed_width_minor=0x7f07000d;
         public static final int disabled_alpha_material_dark=0x7f070001;
         public static final int disabled_alpha_material_light=0x7f070000;
-        /**  Items du menu sliding 
-         */
-        public static final int items_menu_sliding=0x7f070030;
-        /**  Menu sliding 
-         */
-        public static final int shadow_width=0x7f07002d;
-        /**  Décalage du menu sliding 
-         */
-        public static final int slidingmenu_offset_smartphone=0x7f07002e;
-        public static final int slidingmenu_offset_tablette=0x7f07002f;
     }
     public static final class drawable {
         public static final int abc_ab_share_pack_holo_dark=0x7f020000;
@@ -1767,17 +1753,19 @@ containing a value of this type.
         public static final int abc_textfield_search_activated_mtrl_alpha=0x7f020030;
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f020031;
         public static final int abc_textfield_search_material=0x7f020032;
-        public static final int ic_action_overflow_white=0x7f020033;
-        public static final int ic_launcher=0x7f020034;
-        public static final int icon=0x7f020035;
-        public static final int icon_accueil=0x7f020036;
-        public static final int icon_correspondants=0x7f020037;
-        public static final int icon_information=0x7f020038;
-        public static final int shadow=0x7f020039;
-        public static final int vignette_correspondants_150=0x7f02003a;
-        public static final int vignette_information_150=0x7f02003b;
+        public static final int fe_logo_blanc=0x7f020033;
+        public static final int ic_action_overflow_white=0x7f020034;
+        public static final int ic_launcher=0x7f020035;
+        public static final int icon=0x7f020036;
+        public static final int icon_accueil=0x7f020037;
+        public static final int icon_correspondants=0x7f020038;
+        public static final int icon_information=0x7f020039;
+        public static final int shadow=0x7f02003a;
+        public static final int vignette_correspondants_150=0x7f02003b;
+        public static final int vignette_information_150=0x7f02003c;
     }
     public static final class id {
+        public static final int action_accueil=0x7f09004a;
         public static final int action_bar=0x7f090036;
         public static final int action_bar_activity_content=0x7f090003;
         public static final int action_bar_container=0x7f090035;
@@ -1792,6 +1780,7 @@ containing a value of this type.
         public static final int action_mode_bar_stub=0x7f090032;
         public static final int action_mode_close_button=0x7f090025;
         public static final int action_settings=0x7f090049;
+        public static final int action_xviewpager=0x7f09004b;
         public static final int activity_chooser_view_content=0x7f090026;
         public static final int always=0x7f090015;
         public static final int beginning=0x7f09001c;
@@ -1910,6 +1899,7 @@ containing a value of this type.
     }
     public static final class menu {
         public static final int main=0x7f0d0000;
+        public static final int menu_xactivity=0x7f0d0001;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1970,25 +1960,23 @@ containing a value of this type.
         public static final int abc_toolbar_collapse_description=0x7f0a0004;
         /**  Items du 'Menu Sliding' 
          */
-        public static final int accueil=0x7f0a001a;
-        public static final int action_settings=0x7f0a0012;
+        public static final int accueil=0x7f0a0017;
         public static final int app_name=0x7f0a0010;
-        public static final int hello_world=0x7f0a0011;
-        public static final int informations=0x7f0a001b;
-        public static final int item_about=0x7f0a0019;
-        public static final int item_aide=0x7f0a0018;
-        public static final int item_commentaire=0x7f0a0016;
-        public static final int item_preferences=0x7f0a0017;
+        public static final int correspondants=0x7f0a0019;
+        public static final int informations=0x7f0a0018;
+        public static final int item_about=0x7f0a0016;
+        public static final int item_accueil=0x7f0a0015;
+        public static final int item_commentaire=0x7f0a0013;
+        public static final int item_preferences=0x7f0a0014;
         /**  Items du 'Menu Overflow' vertical 
          */
-        public static final int menu_actionbar=0x7f0a0015;
-        public static final int nom_application=0x7f0a0013;
+        public static final int menu_actionbar=0x7f0a0012;
         /**  Fragment & ViewPager 
          */
-        public static final int title_section1=0x7f0a001c;
-        public static final int title_section2=0x7f0a001d;
-        public static final int title_section3=0x7f0a001e;
-        public static final int vide=0x7f0a0014;
+        public static final int title_section1=0x7f0a001a;
+        public static final int title_section2=0x7f0a001b;
+        public static final int title_section3=0x7f0a001c;
+        public static final int vide=0x7f0a0011;
     }
     public static final class style {
         /** 

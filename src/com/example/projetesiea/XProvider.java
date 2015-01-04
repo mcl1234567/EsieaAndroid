@@ -179,76 +179,55 @@ public class XProvider extends ContentProvider {
     public static final String KEY_CAPITALE = "capitale";
   	public static final String KEY_MONNAIE = "monnaie";
   	public static final String KEY_POPULATION = "population";
-  	/*public static final String KEY_FORMEETAT = "formeetat";
-  	public static final String KEY_ROI = "roi";
-  	public static final String KEY_PRESIDENT_GOUVERNEMENT = "president_gouvernement";
+  	public static final String KEY_FORMEETAT = "formeetat";
   	public static final String KEY_LANGUE = "langue";
-  	public static final String KEY_GOUVERNEMENT = "gouvernement";
-  	public static final String KEY_PREMIER_MINISTRE = "premier_ministre";
-  	public static final String KEY_PRESIDENT_REPUBLIQUE = "president_republique";
   	public static final String KEY_CLIMAT = "climat";
   	public static final String KEY_SUPERFICIE = "superficie";
   	public static final String KEY_DENSITE = "densite";
   	public static final String KEY_RELIGION = "religion";
-  	public static final String KEY_PIB = "pib";
   	public static final String KEY_NOMBRE_EXPATRIES = "nombre_expatries";
-  	public static final String KEY_TAUX_CHOMAGE = "taux_chomage";
-  	public static final String KEY_INDICATIF_TEL = "indicatif_tel";*/
+  	public static final String KEY_INDICATIF_TEL = "indicatif_tel";
 
   	// Indexes **
   	public static final int NOM_COLUMN = 1;
-    public static final int CAPITALE_COLUMN = 2;
-  	public static final int MONNAIE_COLUMN = 3;
-  	public static final int POPULATION_COLUMN = 4;
-  	/*public static final int FORMEETAT_COLUMN = 5;
-  	public static final int ROI_COLUMN = 6;
-  	public static final int PRESIDENT_GOUVERNEMENT_COLUMN = 7;
-  	public static final int LANGUE_COLUMN = 8;
-  	public static final int GOUVERNEMENT_COLUMN = 9;
-  	public static final int PREMIER_MINISTRE_COLUMN = 10;
-  	public static final int PRESIDENT_REPUBLIQUE_COLUMN = 11;
-  	public static final int CLIMAT_COLUMN = 12;
-  	public static final int SUPERFICIE_COLUMN = 13;
-  	public static final int DENSITE_COLUMN = 14;
-  	public static final int RELIGION_COLUMN = 15;
-  	public static final int PIB_COLUMN = 16;
-  	public static final int NOMBRE_EXPATRIES_COLUMN = 17;
-  	public static final int TAUX_CHOMAGE_COLUMN = 18;
-  	public static final int INDICATIFT_TEL_COLUMN = 19;*/
+  	public static final int MONNAIE_COLUMN = 2;
+  	public static final int POPULATION_COLUMN = 3;
+  	public static final int FORMEETAT_COLUMN = 4;
+  	public static final int LANGUE_COLUMN = 5;
+    public static final int CAPITALE_COLUMN = 6;
+  	public static final int CLIMAT_COLUMN = 7;
+  	public static final int SUPERFICIE_COLUMN = 8;
+  	public static final int DENSITE_COLUMN = 9;
+  	public static final int RELIGION_COLUMN = 10;
+  	public static final int NOMBRE_EXPATRIES_COLUMN = 11;
+  	public static final int INDICATIFT_TEL_COLUMN = 12;
 
   	// Classe helper pour ouvrir, creer et gerer le controle de version de la base.
   	private static class DatabaseHelper extends SQLiteOpenHelper {
   	  	// **
-  		/*private static final String DB_CREATE = "CREATE TABLE " + TABLE 
-                                + " (" 
+  		private static final String DB_CREATE = "CREATE TABLE " + TABLE 
+                                								+ " (" 
 																+ KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 																+ KEY_NOM + " TEXT, "
-                                + KEY_CAPITALE + " TEXT, "
+																+ KEY_CAPITALE + " TEXT, "
 																+ KEY_MONNAIE + " TEXT, "
 																+ KEY_POPULATION + " TEXT, "
 																+ KEY_FORMEETAT + " TEXT, "
-																+ KEY_ROI + " TEXT, "
-																+ KEY_PRESIDENT_GOUVERNEMENT + " TEXT, "
 																+ KEY_LANGUE + " TEXT, "
-																+ KEY_GOUVERNEMENT + " TEXT, "
-																+ KEY_PREMIER_MINISTRE + " TEXT, "
-																+ KEY_PRESIDENT_REPUBLIQUE + " TEXT, "
 																+ KEY_CLIMAT + " TEXT, "
 																+ KEY_SUPERFICIE + " TEXT, "
 																+ KEY_DENSITE + " TEXT, "
 																+ KEY_RELIGION + " TEXT, "
-																+ KEY_PIB + " TEXT, "
 																+ KEY_NOMBRE_EXPATRIES + " TEXT, "
-																+ KEY_TAUX_CHOMAGE + " TEXT, "
-																+ KEY_INDICATIF_TEL + " TEXT);";*/
+																+ KEY_INDICATIF_TEL + " TEXT);";
 
-      private static final String DB_CREATE = "CREATE TABLE " + TABLE 
+      /*private static final String DB_CREATE = "CREATE TABLE " + TABLE 
                                 + " (" 
                                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                                 + KEY_NOM + " TEXT, "
                                 + KEY_CAPITALE + " TEXT, "
                                 + KEY_MONNAIE + " TEXT, "
-                                + KEY_POPULATION + " TEXT);";
+                                + KEY_POPULATION + " TEXT);";*/
 
   		public DatabaseHelper(Context context, String name, CursorFactory factory, int version) 
   		{
