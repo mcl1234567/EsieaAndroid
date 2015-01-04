@@ -5,4 +5,39 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string name="nom_application">France-Expatriés</string>
+    <string name="vide"></string>
+    <!-- URL des BDD serveurs -->
+    <string name="renseignements_feed">http://france-expatries.com/fex_app/pays.php?pays=</string>
+    <string name="correspondants_feed">http://france-expatries.com/fex_app/correspondant.php</string>
+
+    <!-- Préférences -->
+    <string name="pays">Pays</string>
+
+    <!-- Items du 'Menu Overflow' vertical -->
+    <string name="menu_actionbar"> - Pays</string>
+    <string name="item_commentaire">Envoyer un commentaire</string>
+    <string name="item_preferences">Préférences</string>
+    <string name="item_aide">Aide</string>
+    <string name="item_about">A propos de</string>
+
+    <!-- Items du 'Menu Sliding' -->
+    <string name="accueil">Accueil</string>
+    <string name="informations">Informations</string>
+    <string name="correspondants">Correspondants</string>
+    <string name="twitter">Twitter - France-Expatriés</string>
+    <string name="facebook">Facebook - France-Expatriés</string>
+    <string name="blog">Blog France-Expatriés</string>
+
+    <!-- Préférences: Envoi d'un commentaire ( bug, remarque, .. ) -->
+    <string name="dialog_title">Envoyer un commentaire</string>
+    <string name="dialog_message"></string>
+    <string name="send">Envoyer</string>
+    <string name="cancel">Annuler</string>
+
+    <!-- Accueil: Demande du pays d'expatriation lors de la première connexion -->
+    <string name="title_choix_pays">Pays d\'expatriation</string>
+    <string name="choix_pays">Choississez votre pays : </string>
+    <string name="selection_pays">Sélectionner</string>
+
 </resources>
