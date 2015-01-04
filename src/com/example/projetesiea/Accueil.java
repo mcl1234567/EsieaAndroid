@@ -1,36 +1,25 @@
 package com.example.projetesiea;
 
-import java.util.Calendar;
+
 import android.app.Activity;
-import android.app.DialogFragment;
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 /**
- * Changements apportés
- * 
- * /!\ Supression des fonctionnalités Twitter ** Facebook ** correspondants ** blog ** utilisateur ** choix du pays ** commentaire /!\
- * /!\ package com.lanouveller.franceexpatries; -> package com.example.projetesiea; /!\
- * /!\ Remplacement de Renseignements.class -> XActivity.class /!\
- *
+ * Activit� 'Accueil'
+ * Vignettes cliquables
+ * Actionbar disponible
  */
-public class Accueil extends Activity {
-  	// Stocke l'activité voulue pendant l'initialisation.
+public class Accueil extends ActionBarActivity {
+
+	private static int XACTIVITY_INTENT = 1;
 	private static int RENSEIGNEMENT_ECHEC = 2;
 
   	/**
@@ -49,31 +38,39 @@ public class Accueil extends Activity {
 	}
 	
 	@Override
-	protected void onResume() {	
+	protected void onResume() 
+	{	
 		super.onResume();
 		configurationVignettes();
 	}
 
 	/**
-	 *  Création du menu Overflow.
+	 *  Creation du menu 'overflow'.
 	 */
     public boolean onCreateOptionsMenu(Menu menu) 
     {
     	super.onCreateOptionsMenu(menu);
     	// Insertion du menu overflow
-    	MenuInflater menuInflater = getMenuInflater();
-		//menuInflater.inflate(R.menu.menu_overflow, menu);
+		getMenuInflater().inflate(R.menu.main, menu);
 
       	return true;
     }
 
 	/**
-	 *  Gestion 'Menu Overflow'.
+	 *  Gestion du menu 'overflow'.
 	 */
     public boolean onOptionsItemSelected(MenuItem item) 
     {
     	super.onOptionsItemSelected(item);
-    	switch(item.getItemId()) { }
+
+    	int itemId = item.getItemId();
+		if(itemId == R.id.action_settings) {
+			{
+				Intent intent = new Intent(this, XActivity.class);
+				startActivityForResult(intent, XACTIVITY_INTENT);
+			}
+			return true;
+		}
 
     	return false;
     }
@@ -83,10 +80,19 @@ public class Accueil extends Activity {
      */
     public void configurationVignettes() 
     {
-		ImageView imageviewRenseignements = (ImageView) findViewById(R.id.vignette_renseignements);
+		ImageView imageviewListView = (ImageView) findViewById(R.id.vignette_renseignements);
+		ImageView imageviewViewPager = (ImageView) findViewById(R.id.vignette_correspondants);
 
 		// Configuration des vignettes.
-		imageviewRenseignements.setOnClickListener(new OnClickListener() {
+		imageviewListView.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				Intent intent = new Intent(Accueil.this, XActivity.class);
+				startActivity(intent);
+			}
+		});
+
+		imageviewViewPager.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View _view) {
 				Intent intent = new Intent(Accueil.this, XActivity.class);

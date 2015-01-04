@@ -14,36 +14,18 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import android.app.AlarmManager;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.IBinder;
-import android.preference.PreferenceManager;
-import android.util.Log;
-import android.widget.Toast;
 
 /**
- * Changements apportés
- * 
- * /!\ Supression de la variable : pays_utilisateur /!\
- * /!\ Supression du code accedant aux préférences /!\
- * /!\ Modification du nom du package : com.example.projetesiea; /!\
- * /!\ Modification du nom de la classe : RenseignementsService -> XService
- * /!\ Modification de l'appel de classe : Renseignements.class -> XActivity.class
- * /!\ Modification de l'appel de classe : RenseignementAlarmReceiver -> XAlarmReceiver
- * /!\ Modification RenseignementProvider -> XProvider
- * Suppression des Log.i()
- * Commentaires sur les données pays non utilisées
- *
- * A faire : Supression des : ???
- *
+ * Gestion en tâche de fond des requêtes HTTP / Internet
+ * Stockage en BDD (SQLite)
  */
 public class XService extends Service {
 
@@ -72,22 +54,22 @@ public class XService extends Service {
 		alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
 		// Diffusion de l'action RenseignementAlarmReceiver ?
-		pendingIntent = PendingIntent.getBroadcast(this, 0, new Intent(XAlarmReceiver.ACTION_REFRESH_RENSEIGNEMENT_ALARM), 0);
+		pendingIntent = PendingIntent.getBroadcast(this, 0, new Intent(X_BroadcastReceiver.ACTION_REFRESH_RENSEIGNEMENT_ALARM), 0);
 	}
 
 	/**
-	 * Etape 3 : Lancement des threads en background.
+	 * Etape 3 : Lancement du thread en tâche de fond.
 	 */
   	private class AppLookupTask extends AsyncTask<Void, Pays, Void> {
 
   		@Override
   		protected Void doInBackground(Void... params) 
   		{
-  			// Récupére le XML
+  			// Récupére le XML ( REST )
   			URL url;
 
   			try {
-  				String feed = "http://latransition.me/pm/pays.php"; // fonctionnel
+  				String feed = "http://latransition.me/pm/pays.php";
 
   				url = new URL(feed);
 
@@ -136,10 +118,10 @@ public class XService extends Service {
 
   							//Pays pays = new Pays(nom, monnaie, population, formeEtat, roi, presidentGouv, langue, capitale, gouvernement, premierMinistre, 
   								//	presidentRepublique, climat, superficie, densite, religion, pib, nombreExpatries, tauxChomage, indicatifTel);
-  							Pays pays = new Pays(nom, monnaie, population, "", "", "", "", capitale, "", "", "", "", "", "", "", "", "", "", "");
+  							Pays pays = new Pays(nom, monnaie, population, "", "", "", "", capitale, "", "", "", "", "", "", "", "", "", "", "");  							
 
   							// Traite le nouveau pays ajouté.
-  							ajoutPays(pays);
+  							addToDB(pays);
   						}
   					}
   				}
@@ -199,7 +181,7 @@ public class XService extends Service {
   	@Override
   	public int onStartCommand(Intent intent, int flags, int startId) 
   	{
-  		refreshRenseignements();
+  		launchHTTPRequest();
 
       return Service.START_NOT_STICKY;
     }
@@ -214,10 +196,11 @@ public class XService extends Service {
     }
 
     /**
+     * Etape 4
      * Insertion / Mise à jour de la base de données.
      * @param _pays
      */
-    private void ajoutPays(Pays _pays) 
+    private void addToDB(Pays _pays) 
     {
     	ContentResolver contentResolver = getContentResolver();
 
@@ -229,10 +212,10 @@ public class XService extends Service {
 
     		ContentValues values = new ContentValues();
 
-		    values.put(XProvider.KEY_NOM, 						_pays.getNom());
-        values.put(XProvider.KEY_CAPITALE,          _pays.getCapitale());
-		    values.put(XProvider.KEY_MONNAIE, 					_pays.getMonnaie());
-		    values.put(XProvider.KEY_POPULATION,				_pays.getPopulation());
+		    values.put(XProvider.KEY_NOM, _pays.getNom());
+		    values.put(XProvider.KEY_CAPITALE, _pays.getCapitale());
+		    values.put(XProvider.KEY_MONNAIE, _pays.getMonnaie());
+		    values.put(XProvider.KEY_POPULATION, _pays.getPopulation());
 		    /*values.put(RenseignementProvider.KEY_FORMEETAT, 				_pays.getFormeEtat());
 		    values.put(RenseignementProvider.KEY_ROI, 						_pays.getRoi());
 		    values.put(RenseignementProvider.KEY_PRESIDENT_GOUVERNEMENT, 	_pays.getPresidentGouvernement());
@@ -252,27 +235,27 @@ public class XService extends Service {
 
     		contentResolver.insert(XProvider.CONTENT_RENSEIGNEMENT_URI, values);
 
-    		annoncePays(_pays);
+    		endProcess(_pays);
     	}
     }
 
     /**
-     * ???
+     * Etape 5
      * @param _pays
      */
-    private void annoncePays(Pays _pays) 
+    private void endProcess(Pays _pays) 
     {
     	Intent intent = new Intent(NOUVEAU_RENSEIGNEMENT_INSERE);
     	intent.putExtra("nom", _pays.getNom());
 
-    	// Envoi le pending intent ?
+    	// Envoi le pending intent
     	sendBroadcast(intent);
     }
 
     /**
-     * Etape 2 : Lance les threads en background.
+     * Etape 2 : Lance le thread en tâche de fond.
      */
-    private void refreshRenseignements() 
+    private void launchHTTPRequest() 
     {
     	if(lastLookup == null || lastLookup.getStatus().equals(AsyncTask.Status.FINISHED)) {
     		lastLookup = new AppLookupTask();

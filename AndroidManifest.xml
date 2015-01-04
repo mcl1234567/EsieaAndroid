@@ -39,7 +39,7 @@
             android:authorities="com.example.provider.pays" />
 
         <!-- Classes Receiver-->
-        <receiver android:name="com.example.projetesiea.RenseignementAlarmReceiver" >
+        <receiver android:name="com.example.projetesiea.X_BroadcastReceiver" >
             <intent-filter> <action android:name="com.example.projetesiea.ACTION_REFRESH_RENSEIGNEMENT_ALARM" /> </intent-filter>
         </receiver>
     </application>
