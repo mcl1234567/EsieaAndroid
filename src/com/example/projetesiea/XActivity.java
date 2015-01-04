@@ -40,8 +40,6 @@ public class XActivity extends ActionBarActivity {
     	{
   	      // Ecriture des donnees de la BDD vers le layout.
   			displayFromBDD();
-
-    		//notificationManager.cancel(XService.NOTIFICATION_ID);    		// 
     	}
   	}
 
@@ -58,17 +56,11 @@ public class XActivity extends ActionBarActivity {
 
 	  	// Ecriture des donnees de la BDD vers le layout.
 	  	displayFromBDD();
-
-	  	// Configuration d'une notification 
-		//notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);	//
   	}
 
     @Override
     public void onResume() 
     {
-    	// Gestion des nouvelles donnees en cours de traitement.
-    	//notificationManager.cancel(XService.NOTIFICATION_ID);	  //
-
     	receiver = new RenseignementReceiver();
     	registerReceiver(receiver, new IntentFilter(XService.NOUVEAU_RENSEIGNEMENT_INSERE));
 

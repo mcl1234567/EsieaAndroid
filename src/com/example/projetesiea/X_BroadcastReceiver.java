@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 /**
- *	BoradcastReceiver
+ *	
  */
 public class X_BroadcastReceiver extends BroadcastReceiver {
 

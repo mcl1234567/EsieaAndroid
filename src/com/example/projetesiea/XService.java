@@ -31,8 +31,6 @@ public class XService extends Service {
 
 	public static final String NOUVEAU_RENSEIGNEMENT_INSERE = "Nouveau renseignement enregistré";
 	public static String INFORMATION_REFRESHED = "com.example.projetesiea.INFORMATION_REFRESHED";
-	/*private Notification nouvelleNotification; // ???*/
-	//public static final int NOTIFICATION_ID = 1; // ???
 
 	// objet du service
 	private AppLookupTask lastLookup = null;
@@ -43,13 +41,6 @@ public class XService extends Service {
 	@Override
 	public void onCreate() 
 	{
-		// Configuration de la notification. // ???
-		/*int icon = R.drawable.icon;
-		String tickerText = "Nouveau renseignement enregistré";
-		long when = System.currentTimeMillis();
-		// Création d'une nouvelle notif. à chaque insertion. // ???
-		nouvelleNotification = new Notification(icon, tickerText, when);*/
-
 		// Récupération du système d'alarmes.
 		alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
@@ -108,10 +99,7 @@ public class XService extends Service {
   							String religion = 		 entry.getElementsByTagName("religion").item(0).getFirstChild().getNodeValue();
   							String nombreExpatries = entry.getElementsByTagName("nombreexpatries").item(0).getFirstChild().getNodeValue();
   							String indicatifTel = 	 entry.getElementsByTagName("indicatiftel").item(0).getFirstChild().getNodeValue();
-
-  							//Pays pays = new Pays(nom, monnaie, population, formeEtat, roi, presidentGouv, langue, capitale, gouvernement, premierMinistre, 
-  								//	presidentRepublique, climat, superficie, densite, religion, pib, nombreExpatries, tauxChomage, indicatifTel);
-  							//Pays pays = new Pays(nom, monnaie, population, "", "", "", "", capitale, "", "", "", "", "", "", "", "", "", "", "");  							
+ 							
   							Pays pays = new Pays(nom, monnaie, population, formeEtat, langue, capitale, climat, superficie, densite, religion, nombreExpatries, indicatifTel);
 
   							// Traite le nouveau pays ajouté.
@@ -153,7 +141,7 @@ public class XService extends Service {
   	{
   		launchHTTPRequest();
 
-      return Service.START_NOT_STICKY;
+  		return Service.START_NOT_STICKY;
     }
 
     /**

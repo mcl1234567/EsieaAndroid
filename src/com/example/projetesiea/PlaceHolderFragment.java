@@ -19,8 +19,7 @@ public class PlaceHolderFragment extends Fragment {
 		return fragment;
 	}
 	
-	public PlaceHolderFragment() {
-	}
+	public PlaceHolderFragment() { 	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 

@@ -16,23 +16,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 /**
- * Element a changer lors d'une copie de provider. marque (**)
- *
- * Changements apportes
- * 
- * /!\ Renommage classe XProvider /!\
- * /!\ Remplacement com.lanouveller.provider -> com.example.provider /!\
- * /!\ Modification du nom du package : com.example.projetesiea; /!\
- *
- * case OBJETS:  return "vnd.android.cursor.dir/vnd.lanouveller.franceexpatries";     -> case OBJETS:  return "vnd.android.cursor.dir/vnd.example.projetesiea";
- * case OBJET_ID:  return "vnd.android.cursor.item/vnd.lanouveller.franceexpatries";  -> case OBJET_ID:  return "vnd.android.cursor.item/vnd.example.projetesiea";
- *
- * Commentaires sur les donnees pays non utilisees
- * 
- * uriMatcher.addURI("com.example.provider.Renseignements", "pays", OBJETS);       -> uriMatcher.addURI("com.example.provider.pays", "pays", OBJETS);
- * uriMatcher.addURI("com.example.provider.Renseignements", "pays/#", OBJET_ID);   -> uriMatcher.addURI("com.example.provider.pays", "pays/#", OBJET_ID);
- *
- * N'A PAS CHANGER ! : public static final Uri CONTENT_RENSEIGNEMENT_URI = Uri.parse("content://com.example.provider.pays/pays");
+ * Gestion de la BDD Pays
  *
  */
 public class XProvider extends ContentProvider {

@@ -20,7 +20,8 @@ import android.widget.ImageView;
 public class Accueil extends ActionBarActivity {
 
 	private static int XACTIVITY_INTENT = 1;
-	private static int RENSEIGNEMENT_ECHEC = 2;
+	private static int _RENSEIGNEMENT_ = 2;
+	private static int _VIEWPAGER_ = 3;	
 
   	/**
   	 * Lancement de l'activite Accueil
@@ -42,6 +43,7 @@ public class Accueil extends ActionBarActivity {
 	protected void onResume() 
 	{	
 		super.onResume();
+		//Configuration des vignettes sur l'accueil.
 		configurationVignettes();
 	}
 
@@ -107,11 +109,11 @@ public class Accueil extends ActionBarActivity {
     {
     	super.onActivityResult(requestCode, resultCode, data);
     	// X_ACTIVITY_ECHEC ou RENSEIGNEMENT_ECHEC
-    	if(requestCode == RENSEIGNEMENT_ECHEC && resultCode == Activity.RESULT_OK) {
+    	if(requestCode == _RENSEIGNEMENT_ && resultCode == Activity.RESULT_OK) {
 			Intent intent = new Intent(Accueil.this, XActivity.class);
 			startActivity(intent);
     	}
-    	if(requestCode == 3 && resultCode == Activity.RESULT_OK) {
+    	if(requestCode == _VIEWPAGER_ && resultCode == Activity.RESULT_OK) {
 			Intent intent = new Intent(Accueil.this, X_ViewPager.class);
 			startActivity(intent);
     	}

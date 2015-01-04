@@ -32,6 +32,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 		return 3;
 	}
 	
+	/**
+	 * Les correspondants
+	 */
 	@Override
 	public CharSequence getPageTitle(int position) 
 	{

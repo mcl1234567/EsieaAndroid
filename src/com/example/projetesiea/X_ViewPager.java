@@ -9,10 +9,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-	/**
-	 * Activité 'X_ViewPager'
-	 * Actionbar disponible
-	 */
+/**
+ * Affichage des correspondants - défilant 
+ */
 public class X_ViewPager extends ActionBarActivity {
 	
 	public SectionsPagerAdapter mSectionsPagerAdapter;
